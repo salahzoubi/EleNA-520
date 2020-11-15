@@ -13,7 +13,7 @@ ox.config(use_cache=True, log_console=True)
 
 class ShortestPath:
 
-    def cost_function(length, gradient):
+    def cost_function(self,length, gradient):
         penalty_term = gradient ** 2
         return (length *penalty_term)**2
 
@@ -22,5 +22,10 @@ class ShortestPath:
 
     def shortest_path_elevate(G, start, end):
         return ox.shortest_path(G, start, end, weight = 'impedance')
+
+    def edge_cost_normsl(G, u, v):
+        return G.edges[u,v,0]['length']
+
+    
 
 
