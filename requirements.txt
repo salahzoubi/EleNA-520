@@ -1,0 +1,9 @@
+osmnx
+plotly_express
+networkx
+descartes
+shapely
+geopandas
+pandas
+matplotlib
+numpy
