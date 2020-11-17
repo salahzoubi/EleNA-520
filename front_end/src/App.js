@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-
-const SRC_ICON_URL = 'https://cdn2.iconfinder.com/data/icons/connectivity/32/navigation-512.png';
-const DEST_ICON_URL = 'https://lh3.googleusercontent.com/proxy/ROPgX30qQ_Rkns4SJNcDWCp2AFYIK8X1a5394XJdIbwTTwjmk6gTn_ATI0V6N8wid7M4JvjISypQNxi4AJi3a_N4m0bWWOfoVlEOVlY2xJRjj6AmuTt0atxEk2U';
+import start from './assets/start.png';
+import dest from './assets/dest.png';
 
 
 class App extends Component {
@@ -23,7 +22,7 @@ class App extends Component {
 
 
   srcIcon = L.icon({
-    iconUrl: SRC_ICON_URL,
+    iconUrl: start,
     // shadowUrl: leafShadow,
     iconSize:     [50, 60], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
@@ -33,7 +32,7 @@ class App extends Component {
   });
 
   destIcon = L.icon({
-    iconUrl: DEST_ICON_URL,
+    iconUrl: dest,
     // shadowUrl: leafShadow,
     iconSize:     [50, 60], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
