@@ -2,36 +2,30 @@ import React, {Component} from 'react';
 import './App.css';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import src from './assets/start.jpg';
-import dest from './assets/dest.png';
-// import leafGreen from './assets/leaf-green.png';
-// import leafRed from './assets/leaf-red.png';
-// import leafOrange from './assets/leaf-orange.png';
-// import leafShadow from './assets/leaf-shadow.png';
+
+const SRC_ICON_URL = 'https://cdn2.iconfinder.com/data/icons/connectivity/32/navigation-512.png';
+const DEST_ICON_URL = 'https://lh3.googleusercontent.com/proxy/ROPgX30qQ_Rkns4SJNcDWCp2AFYIK8X1a5394XJdIbwTTwjmk6gTn_ATI0V6N8wid7M4JvjISypQNxi4AJi3a_N4m0bWWOfoVlEOVlY2xJRjj6AmuTt0atxEk2U';
+
 
 class App extends Component {
   
   state = {
     srcIcon: {
-      lat: 35.787449,
-      lng: -78.6438197,
+      lat: 42.3898,
+      lng: -72.5283,
     },
     destIcon: {
-      lat: 35.774416,
-      lng: -78.633271,
+      lat: 42.3819,
+      lng: -72.5300,
     },
-    // orangeIcon: {
-    //   lat: 35.772790,
-    //   lng: -78.652305,
-    // },
     zoom: 13
   }
 
 
   srcIcon = L.icon({
-    iconUrl: src,
+    iconUrl: SRC_ICON_URL,
     // shadowUrl: leafShadow,
-    iconSize:     [38, 95], // size of the icon
+    iconSize:     [50, 60], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
@@ -39,29 +33,18 @@ class App extends Component {
   });
 
   destIcon = L.icon({
-    iconUrl: dest,
+    iconUrl: DEST_ICON_URL,
     // shadowUrl: leafShadow,
-    iconSize:     [38, 95], // size of the icon
+    iconSize:     [50, 60], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
     shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -86]
   });
 
-  // orangeIcon = L.icon({
-  //   iconUrl: leafOrange,
-  //   shadowUrl: leafShadow,
-  //   iconSize:     [38, 95], // size of the icon
-  //   shadowSize:   [50, 64], // size of the shadow
-  //   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-  //   shadowAnchor: [4, 62],  // the same for the shadow
-  //   popupAnchor:  [-3, -86]
-  // });
-
   render(){
     const positionDestIcon = [this.state.destIcon.lat, this.state.destIcon.lng];
     const positionSrcIcon = [this.state.srcIcon.lat, this.state.srcIcon.lng];
-    // const positionOrangeIcon = [this.state.orangeIcon.lat, this.state.orangeIcon.lng];
     return (
       <Map className="map" center={positionSrcIcon} zoom={this.state.zoom}>
         <TileLayer
@@ -78,11 +61,6 @@ class App extends Component {
           I am a red leaf
           </Popup>
         </Marker>
-        {/* <Marker position={positionOrangeIcon} icon={this.orangeIcon}>
-          <Popup>
-          I am an orange leaf
-          </Popup>
-        </Marker> */}
       </Map>
       
     );
