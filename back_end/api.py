@@ -25,7 +25,8 @@ def create_graph_point(x_loc, y_loc, dist, transport_mode):
     loc = (x_loc, y_loc)
     graph = statsSummary.create_graph(loc, dist, transport_mode, 'point')
     graph = stats.populate_graph(graph, False)
-    return {'msg':'graph created'}
+    graph = stats.modify_graph_elevate(graph)
+    return {'graph':graph}
 
 #this one takes a string (address) for a parameter
 @app.route('/create_graph_address/<loc>/<dist>/', defaults = {'transport_mode':'walk'})
@@ -33,12 +34,20 @@ def create_graph_point(x_loc, y_loc, dist, transport_mode):
 def create_graph_address(loc, dist, transport_mode):
     graph = statsSummary.create_graph(loc, dist, transport_mode, 'address')
     graph = statsSummary.populate_graph(graph)
-    return {'msg':'graph created'}
+    graph = stats.modify_graph_elevate(graph)
+    return {'graph':graph}
+
+@app.route('/shortest_path_normal/<int:start>/<int:end>')
+def get_shortest_path_normal(start, end):
+    shortest_path = shortestPathObject.get_shortest_path_normal(graph,start, end)
+    return {"shortest" : shortest_path}
+
+@app.route('/shortest_path_elevate/<int:start>/<int:end>')
+def get_shortest_path_elevate(start, end):
+    shortest_path = shortestPathObject.get_shortest_path_elevate(graph,start, end)
+    return {"shortest" : shortest_path}
 
 
-
-
-    
 #def shortest_path_normal(self, G, start, end):
  #       return ox.shortest_path(G, start, end, weight = 'length')
 
