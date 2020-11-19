@@ -17,14 +17,14 @@ class ShortestPath:
         penalty_term = gradient ** 2
         return (length *penalty_term)**2
 
-    def shortest_path_normal(G, start, end):
+    def shortest_path_normal(self, G, start, end):
         return ox.shortest_path(G, start, end, weight = 'length')
 
-    def shortest_path_elevate(G, start, end):
-        return ox.shortest_path(G, start, end, weight = 'impedance')
+    def shortest_path_elevate(self, G, start, end):
+       return ox.shortest_path(G, start, end, weight = 'impedance')
 
-    def edge_cost_normsl(G, u, v):
-        return G.edges[u,v,0]['length']
+    def edge_cost_normsl(self, G, u, v):
+       return G.edges[u,v,0]['length']
 
     
 
