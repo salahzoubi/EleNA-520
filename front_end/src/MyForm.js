@@ -7,8 +7,8 @@ class MyForm extends Component {
     this.state = {
       name: "React",
       selectedOption: '',
-      startPoint: '',
-      destPoint: ''
+      startPoint: ['', ''],
+      destPoint: ['', '']
     };
     this.onRadioChange = this.onRadioChange.bind(this);
     this.onStartChange = this.onStartChange.bind(this);
@@ -23,14 +23,16 @@ class MyForm extends Component {
   }
 
   onStartChange(event) {
+    const coords = event.target.value.split(',');
     this.setState({
-      startPoint: event.target.value
+      startPoint: coords
     });
   }
 
   onDestChange(event) {
+    const coords = event.target.value.split(',');
     this.setState({
-      destPoint: event.target.value
+      destPoint: coords
     });
   }
 
@@ -41,7 +43,6 @@ class MyForm extends Component {
 
   render() {
     return (
-      
       <div className='myForm'>
         <div className="header">EleNA</div> 
         <form onSubmit={this.formSubmit}>
