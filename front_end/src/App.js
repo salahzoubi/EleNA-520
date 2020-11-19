@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import Control from 'react-leaflet-control';
+import MyForm from './MyForm';
 import start from './assets/start.png';
 import dest from './assets/dest.png';
 
@@ -9,11 +11,11 @@ import dest from './assets/dest.png';
 class App extends Component {
   
   state = {
-    srcIcon: {
+    src: {
       lat: 42.3898,
       lng: -72.5283,
     },
-    destIcon: {
+    dest: {
       lat: 42.3819,
       lng: -72.5300,
     },
@@ -42,8 +44,8 @@ class App extends Component {
   });
 
   render(){
-    const positionDestIcon = [this.state.destIcon.lat, this.state.destIcon.lng];
-    const positionSrcIcon = [this.state.srcIcon.lat, this.state.srcIcon.lng];
+    const positionDestIcon = [this.state.dest.lat, this.state.dest.lng];
+    const positionSrcIcon = [this.state.src.lat, this.state.src.lng];
     return (
       <Map className="map" center={positionSrcIcon} zoom={this.state.zoom}>
         <TileLayer
@@ -52,14 +54,17 @@ class App extends Component {
         />
         <Marker position={positionSrcIcon} icon={this.srcIcon}>
           <Popup>
-          I am a green leaf
+          Start
           </Popup>
         </Marker>
         <Marker position={positionDestIcon} icon={this.destIcon}>
           <Popup>
-          I am a red leaf
+          Finish
           </Popup>
         </Marker>
+        <Control position="topright" >
+          <MyForm />
+      </Control>
       </Map>
       
     );

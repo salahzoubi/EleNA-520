@@ -1,3 +1,33 @@
 .map {
   height:100vh;
 }
+
+.myForm {
+  height: 800px;
+  width: 400px;
+  background-color: lightgray;
+  margin: 0;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+.btn {
+  height: 50px;
+  width: 100px;
+  background-color: lightblue;
+}
+
+.mytext {
+  height: 30px;
+  width: 350px;
+  font-size: 24px;
+}
+
+.endpoint {
+  text-align: left;
+}
