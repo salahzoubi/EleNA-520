@@ -21,10 +21,10 @@ class ShortestPath:
         return ox.shortest_path(G, start, end, weight = 'length')
 
     def shortest_path_elevate(self, G, start, end):
-        return ox.shortest_path(G, start, end, weight = 'impedance')
+       return ox.shortest_path(G, start, end, weight = 'impedance')
 
     def edge_cost_normsl(self, G, u, v):
-        return G.edges[u,v,0]['length']
+       return G.edges[u,v,0]['length']
 
     
 
