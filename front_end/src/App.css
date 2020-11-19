@@ -3,8 +3,11 @@
 }
 
 .myForm {
-  height: 800px;
+  height: 500px;
   width: 400px;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: darkblue;
   background-color: lightgray;
   margin: 0;
   text-align: center;
@@ -24,10 +27,12 @@
 
 .mytext {
   height: 30px;
-  width: 350px;
+  width: 320px;
   font-size: 24px;
+  margin-left: 10px;
 }
 
 .endpoint {
   text-align: left;
+  margin-left: 10px;
 }
