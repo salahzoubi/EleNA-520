@@ -7,7 +7,13 @@ import MyForm from './MyForm';
 import start from './assets/start.png';
 import dest from './assets/dest.png';
 
-
+/**
+ * TODO:
+ * add slider
+ * add stats (differences between different routes, distances)
+ * search bar functionality (drop down? or API)
+ * POST request to populate nodes and draw polyLines
+ */
 class App extends Component {
 
   constructor(){
@@ -23,6 +29,8 @@ class App extends Component {
       },
       zoom: 13
     };
+    //TODO populate this
+    this.nodes = [];
     this.formSubmit = this.formSubmit.bind(this);
   }
 
@@ -57,12 +65,16 @@ class App extends Component {
         lng: parseFloat(state.destPoint[1]),
       }
     });
+
+    //TODO: POST request to back end
+    //TODO: populate nodes
   }
 
   render(){
     console.log(JSON.stringify(this.state));
     const positionDestIcon = [this.state.dest.lat, this.state.dest.lng];
     const positionSrcIcon = [this.state.src.lat, this.state.src.lng];
+    //TODO add polyLines of nodes
     return (
       <Map className="map" center={positionSrcIcon} zoom={this.state.zoom}>
         <TileLayer
