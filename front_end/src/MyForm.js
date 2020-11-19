@@ -43,8 +43,8 @@ class MyForm extends Component {
     return (
       
       <div className='myForm'>
+        <div className="header">EleNA</div> 
         <form onSubmit={this.formSubmit}>
-        <header className="navbar">EleNA</header> 
           <br></br>
           <br></br>
 
