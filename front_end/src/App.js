@@ -4,7 +4,6 @@ import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import Control from 'react-leaflet-control';
 import MyForm from './MyForm';
-import initPosition from './data/initPosition';
 import start from './assets/start.png';
 import dest from './assets/dest.png';
 
