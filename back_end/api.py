@@ -3,11 +3,16 @@ from ShortestPath import *
 from StatsSummary import *
 from flask import Flask, request
 
+from ShortestPath import ShortestPath
+from StatsSummary import StatsSummary
+
 app = Flask(__name__)
 
 shortestPathObject = ShortestPath()
 statsSummary = StatsSummary()
-graph = None
+graph = statsSummary.create_graph("University of Massachusetts Amherst", dist = 700)
+graph = statsSummary.populate_graph(G = graph)
+graph =  statsSummary.modify_graph_elevate(graph)
 
 
 @app.route('/cost/<length>/<gradient>')
@@ -24,27 +29,27 @@ def create_graph_point(x_loc, y_loc, dist, transport_mode):
 
     loc = (x_loc, y_loc)
     graph = statsSummary.create_graph(loc, dist, transport_mode, 'point')
-    graph = stats.populate_graph(graph, False)
-    graph = stats.modify_graph_elevate(graph)
+    graph = statsSummary.populate_graph(graph, False)
+    graph = statsSummary.modify_graph_elevate(graph)
     return {'graph':graph}
 
-#this one takes a string (address) for a parameter
-@app.route('/create_graph_address/<loc>/<dist>/', defaults = {'transport_mode':'walk'})
-@app.route('/create_graph_address/<loc>/<dist>/<transport_mode>/')
-def create_graph_address(loc, dist, transport_mode):
-    graph = statsSummary.create_graph(loc, dist, transport_mode, 'address')
-    graph = statsSummary.populate_graph(graph)
-    graph = stats.modify_graph_elevate(graph)
-    return {'graph':graph}
+# #this one takes a string (address) for a parameter
+# @app.route('/create_graph_address/<loc>/<int:dist>/', defaults = {'transport_mode':'walk'})
+# @app.route('/create_graph_address/<loc>/<int:dist>/<transport_mode>/')
+# def create_graph_address(loc, dist, transport_mode):
+#     graph = statsSummary.create_graph(loc, dist, transport_mode, 'address')
+#     graph = statsSummary.populate_graph(graph)
+#     graph = statsSummary.modify_graph_elevate(graph)
+#     return {'graph':graph}
 
 @app.route('/shortest_path_normal/<int:start>/<int:end>')
 def get_shortest_path_normal(start, end):
-    shortest_path = shortestPathObject.get_shortest_path_normal(graph,start, end)
+    shortest_path = shortestPathObject.shortest_path_normal(graph,start, end)
     return {"shortest" : shortest_path}
 
 @app.route('/shortest_path_elevate/<int:start>/<int:end>')
 def get_shortest_path_elevate(start, end):
-    shortest_path = shortestPathObject.get_shortest_path_elevate(graph,start, end)
+    shortest_path = shortestPathObject.shortest_path_elevate(graph,start, end)
     return {"shortest" : shortest_path}
 
 
