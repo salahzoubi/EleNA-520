@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "EleNa",
+  "name": "TODO Team Name EleNa",
+  "description": "CS520 Fall 2020 Final Project",
   "icons": [
     {
       "src": "favicon.ico",
