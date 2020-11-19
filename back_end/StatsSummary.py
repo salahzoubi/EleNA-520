@@ -13,7 +13,7 @@ class StatsSummary:
     def __init__(self):
         pass
 
-    def create_graph(self,loc, dist, transport_mode = 'walk', loc_type = 'address'):
+    def create_graph(self, loc, dist, transport_mode = 'walk', loc_type = 'address'):
         G = None
         if loc_type == "address":
             G = ox.graph_from_address(loc, dist=dist, network_type=transport_mode)
