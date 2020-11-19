@@ -4,6 +4,7 @@ import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import Control from 'react-leaflet-control';
 import MyForm from './MyForm';
+import initPosition from './data/initPosition';
 import start from './assets/start.png';
 import dest from './assets/dest.png';
 
@@ -25,7 +26,6 @@ class App extends Component {
 
   srcIcon = L.icon({
     iconUrl: start,
-    // shadowUrl: leafShadow,
     iconSize:     [50, 60], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
@@ -35,7 +35,6 @@ class App extends Component {
 
   destIcon = L.icon({
     iconUrl: dest,
-    // shadowUrl: leafShadow,
     iconSize:     [50, 60], // size of the icon
     shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location

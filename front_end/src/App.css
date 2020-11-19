@@ -5,6 +5,7 @@
 .myForm {
   height: 500px;
   width: 400px;
+  position: "Top left";
   outline-style: solid;
   outline-width: 2px;
   outline-color: darkblue;
@@ -17,6 +18,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -35,4 +38,16 @@
 .endpoint {
   text-align: left;
   margin-left: 10px;
+}
+
+.navbar {
+  height: 50px;
+  background-color: #333;
+  color: rgb(129, 114, 114);
+  /* margin-bottom: 15px; */
+  text-align: center;
+  font-size: 30px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }

@@ -41,8 +41,13 @@ class MyForm extends Component {
 
   render() {
     return (
+      
       <div className='myForm'>
         <form onSubmit={this.formSubmit}>
+        <header className="navbar">EleNA</header> 
+          <br></br>
+          <br></br>
+
           <div className="endpoint">
             Start:
             <label>
@@ -53,6 +58,10 @@ class MyForm extends Component {
               />
             </label>
           </div>
+          
+          <br></br>
+          <br></br>
+
           <div className="endpoint">
             Dest:
             <label>
@@ -63,6 +72,10 @@ class MyForm extends Component {
               />
             </label>
           </div>
+
+          <br></br>
+          <br></br>
+
           <div className="radio">
             <label>
               <input
