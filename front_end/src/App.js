@@ -9,19 +9,22 @@ import dest from './assets/dest.png';
 
 
 class App extends Component {
-  
-  state = {
-    src: {
-      lat: 42.3898,
-      lng: -72.5283,
-    },
-    dest: {
-      lat: 42.3819,
-      lng: -72.5300,
-    },
-    zoom: 13
-  }
 
+  constructor(){
+    super();
+    this.state = {
+      src: {
+        lat: 42.3898,
+        lng: -72.5283,
+      },
+      dest: {
+        lat: 42.3819,
+        lng: -72.5300,
+      },
+      zoom: 13
+    };
+    this.formSubmit = this.formSubmit.bind(this);
+  }
 
   srcIcon = L.icon({
     iconUrl: start,
@@ -41,7 +44,23 @@ class App extends Component {
     popupAnchor:  [-3, -86]
   });
 
+  formSubmit(event, state) {
+    event.preventDefault();
+    alert("Start: " + state.startPoint + "\nDest: " + state.destPoint + "\nMethod: " + state.selectedOption);
+    this.setState({
+      src: {
+        lat: parseFloat(state.startPoint[0]),
+        lng: parseFloat(state.startPoint[1]),
+      },
+      dest: {
+        lat: parseFloat(state.destPoint[0]),
+        lng: parseFloat(state.destPoint[1]),
+      }
+    });
+  }
+
   render(){
+    console.log(JSON.stringify(this.state));
     const positionDestIcon = [this.state.dest.lat, this.state.dest.lng];
     const positionSrcIcon = [this.state.src.lat, this.state.src.lng];
     return (
@@ -61,7 +80,8 @@ class App extends Component {
           </Popup>
         </Marker>
         <Control position="topright" >
-          <MyForm />
+          <MyForm 
+            formSubmit={this.formSubmit} />
       </Control>
       </Map>
       

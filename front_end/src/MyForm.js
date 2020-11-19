@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import './App.css';
 
 class MyForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: "React",
       selectedOption: '',
-      startPoint: ['', ''],
-      destPoint: ['', '']
+      startPoint: ['42.3898', '-72.5283'],
+      destPoint: ['42.3819', '-72.5300']
     };
     this.onRadioChange = this.onRadioChange.bind(this);
     this.onStartChange = this.onStartChange.bind(this);
     this.onDestChange = this.onDestChange.bind(this);
+    //this handler is passed down as a prop
     this.formSubmit = this.formSubmit.bind(this);
   }
 
@@ -36,9 +37,9 @@ class MyForm extends Component {
     });
   }
 
+  //lift state up to parent App.js
   formSubmit(event) {
-    event.preventDefault();
-    alert("Start: " + this.state.startPoint + "\nDest: " + this.state.destPoint + "\nMethod: " + this.state.selectedOption)
+    this.props.formSubmit(event, this.state);
   }
 
   render() {
