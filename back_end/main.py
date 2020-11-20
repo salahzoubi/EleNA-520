@@ -20,14 +20,14 @@ if __name__ == "__main__":
     origin = ox.get_nearest_node(G, (42.3878210, -72.5239110)) #Frank DC coordinates from the graph G
     end = ox.get_nearest_node(G, (2.3894329, -72.5190326)) #Chadbourne Hall coordinate from G
 
-    print(origin)
-    print(end)
     #returns the shortest path overall...
 
     shortest_path_normal = ox.shortest_path(G, origin, end, weight = 'length') #shortest path from origin to end
     print(shortest_path_normal)
     fig, ax = ox.plot_graph_route(G, shortest_path_normal, bbox=None, node_size=10)
 
+    list_of_coords = s.convert_nodes_to_coord(G, shortest_path_normal) #passing in a list of ints representing nodes, return a list of (x,y) coords
+    print(list_of_coords)
     #returns shortest path
 
     shortest_path_grad = ox.shortest_path(G, origin, end, weight='impedance')
