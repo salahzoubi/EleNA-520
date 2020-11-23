@@ -2,6 +2,7 @@ import time
 from ShortestPath import *
 from StatsSummary import *
 from flask import Flask, request
+import osmnx as ox
 
 from ShortestPath import ShortestPath
 from StatsSummary import StatsSummary
@@ -14,7 +15,6 @@ graph = statsSummary.create_graph("University of Massachusetts Amherst", dist = 
 graph = statsSummary.populate_graph(G = graph)
 graph =  statsSummary.modify_graph_elevate(graph)
 
-
 @app.route('/cost/<length>/<gradient>')
 def get_cost(length, gradient):
     length_int = int(length)
@@ -26,7 +26,6 @@ def get_cost(length, gradient):
 @app.route('/create_graph_point/<float:x_loc>/<float:y_loc>/<dist>/', defaults = {'transport_mode': 'walk'})
 @app.route('/create_graph_point/<float:x_loc>/<float:y_loc>/<dist>/<transport_mode>/')
 def create_graph_point(x_loc, y_loc, dist, transport_mode):
-
     loc = (x_loc, y_loc)
     graph = statsSummary.create_graph(loc, dist, transport_mode, 'point')
     graph = statsSummary.populate_graph(graph, False)
@@ -51,6 +50,14 @@ def get_shortest_path_normal(start, end):
 def get_shortest_path_elevate(start, end):
     shortest_path = shortestPathObject.shortest_path_elevate(graph,start, end)
     return {"shortest" : shortest_path}
+
+@app.route('/coordinates/<float:x_loc>/<float:y_loc>')
+def temp(x_loc, y_loc):
+    return {"x coordinate": x_loc, "y coordinate": y_loc}
+
+@app.route('/get_nearest_node/<float:x_loc>/<float:y_loc>')
+def get_nearest_node(x_loc, y_loc):
+    return ox.get_nearest_node(graph, x_loc, y_loc)
 
 
 #def shortest_path_normal(self, G, start, end):
