@@ -38,7 +38,6 @@ class StatsSummary:
         return G
 
     def convert_nodes_to_coord(self, G, nodes):
-
         return [(G.nodes[n]['x'], G.nodes[n]['y']) for n in nodes]
 
     def print_route_stats(self, G, route):

@@ -34,8 +34,6 @@ if __name__ == "__main__":
     print(shortest_path_grad)
     fig, ax = ox.plot_graph_route(G, shortest_path_grad, bbox=None, node_size=0)
 
-
-
     #print some summary stats...
 
     s.print_route_stats(G, shortest_path_normal)

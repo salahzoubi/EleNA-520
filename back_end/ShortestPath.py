@@ -17,11 +17,12 @@ class ShortestPath:
         penalty_term = gradient ** 2
         return (length *penalty_term)**2
 
-    def shortest_path_normal(self, G, start, end):
-        return ox.shortest_path(G, start, end, weight = 'length')
+    #strategy input for shortest path (pick between default (A*) and dijkstra)
+    def shortest_path_normal(self, G, start, end, dijkstra = False):
+        return ox.shortest_path(G, start, end, weight = 'length') if not dijkstra else nx.dijkstra_path(G, start, end, weight = 'length')
 
-    def shortest_path_elevate(self, G, start, end):
-       return ox.shortest_path(G, start, end, weight = 'impedance')
+    def shortest_path_elevate(self, G, start, end, dijkstra =  False):
+       return ox.shortest_path(G, start, end, weight = 'impedance') if not dijkstra else nx.dijkstra_path(G, start, end, weight = 'impedance')
 
     def edge_cost_normsl(self, G, u, v):
        return G.edges[u,v,0]['length']
