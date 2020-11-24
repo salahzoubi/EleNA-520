@@ -6,7 +6,6 @@ class MyForm extends Component {
     super(props);
     this.state = {
       name: "React",
-      //TODO make sure this gets renamed, previous name was selectedOption
       routeType: '',
       algorithm: '',
       startPoint: ['42.3898', '-72.5283'],
@@ -134,7 +133,7 @@ class MyForm extends Component {
             <label>
               <input
                 type="radio"
-                value="fast"
+                value="djikstra"
                 checked={this.state.algorithm === "djikstra"}
                 onChange={this.onAlgorithmRadioChange}
               />
