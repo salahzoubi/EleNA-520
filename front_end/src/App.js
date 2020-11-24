@@ -54,7 +54,7 @@ class App extends Component {
 
   formSubmit(event, state) {
     event.preventDefault();
-    alert("Start: " + state.startPoint + "\nDest: " + state.destPoint + "\nMethod: " + state.selectedOption);
+    alert("Start: " + state.startPoint + "\nDest: " + state.destPoint + "\nMethod: " + state.routeType + "\nAlgorithm: " + state.algorithm);
     this.setState({
       src: {
         lat: parseFloat(state.startPoint[0]),
