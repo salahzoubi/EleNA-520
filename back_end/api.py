@@ -21,6 +21,11 @@ def get_cost(length, gradient):
     gradient_int = int(gradient)
     cost = shortestPathObject.cost_function(length_int, gradient_int)
     return {'cost': cost}
+
+@app.route('/get_nearest_node/<float:x_loc>/<float:y_loc>')
+def get_nearest_node(x_loc, y_loc):
+    node = shortestPathObject.nearest_node_from_point(graph, x_loc,y_loc)
+    return {"node": node}
     
 #this one takes 2 doubles for a parameter
 @app.route('/create_graph_point/<float:x_loc>/<float:y_loc>/<dist>/', defaults = {'transport_mode': 'walk'})
@@ -54,10 +59,6 @@ def get_shortest_path_elevate(start, end):
 @app.route('/coordinates/<float:x_loc>/<float:y_loc>')
 def temp(x_loc, y_loc):
     return {"x coordinate": x_loc, "y coordinate": y_loc}
-
-@app.route('/get_nearest_node/<float:x_loc>/<float:y_loc>')
-def get_nearest_node(x_loc, y_loc):
-    return ox.get_nearest_node(graph, x_loc, y_loc)
 
 
 #def shortest_path_normal(self, G, start, end):

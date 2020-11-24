@@ -30,6 +30,9 @@ class ShortestPath:
             coord_path = self.convert_nodes_to_coord(G, short_path)
             return {"nodes": short_path, "coordinates": coord_path}
 
+    def nearest_node_to_point(self, G, x, y):
+        return ox.get_nearest_node(G, (x, y))
+
     def shortest_path_elevate(self, G, start, end, dijkstra =  False):
         if not dijkstra:
             short_path = ox.shortest_path(G, start, end, weight = 'impedance')
