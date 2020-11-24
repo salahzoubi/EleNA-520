@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import L from 'leaflet';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import Control from 'react-leaflet-control';
 import MyForm from './MyForm';
 import start from './assets/start.png';
@@ -52,7 +52,7 @@ class App extends Component {
     popupAnchor:  [-3, -86]
   });
 
-  formSubmit(event, state) {
+  async formSubmit(event, state) {
     event.preventDefault();
     //alert("Start: " + state.startPoint + "\nDest: " + state.destPoint + "\nMethod: " + state.routeType + "\nAlgorithm: " + state.algorithm);
     if(!state.startPoint || !state.destPoint){
@@ -122,6 +122,10 @@ class App extends Component {
           Finish
           </Popup>
         </Marker>
+        <Polyline color={'red'}
+          positions={[
+            this.state.src, this.state.dest,
+          ]} />
         <Control position="topright" >
           <MyForm 
             formSubmit={this.formSubmit} />
