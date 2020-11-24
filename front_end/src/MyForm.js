@@ -6,20 +6,28 @@ class MyForm extends Component {
     super(props);
     this.state = {
       name: "React",
-      selectedOption: '',
+      routeType: '',
+      algorithm: '',
       startPoint: ['42.3898', '-72.5283'],
       destPoint: ['42.3819', '-72.5300']
     };
-    this.onRadioChange = this.onRadioChange.bind(this);
+    this.onRouteRadioChange = this.onRouteRadioChange.bind(this);
+    this.onAlgorithmRadioChange = this.onAlgorithmRadioChange.bind(this);
     this.onStartChange = this.onStartChange.bind(this);
     this.onDestChange = this.onDestChange.bind(this);
     //this handler is passed down as a prop
     this.formSubmit = this.formSubmit.bind(this);
   }
 
-  onRadioChange(event) {
+  onRouteRadioChange(event) {
     this.setState({
-      selectedOption: event.target.value
+      routeType: event.target.value
+    });
+  }
+
+  onAlgorithmRadioChange(event) {
+    this.setState({
+      algorithm: event.target.value
     });
   }
 
@@ -47,8 +55,6 @@ class MyForm extends Component {
       <div className='myForm'>
         <div className="header">EleNA</div> 
         <form onSubmit={this.formSubmit}>
-          <br></br>
-          <br></br>
 
           <div className="endpoint">
             Start:
@@ -57,11 +63,11 @@ class MyForm extends Component {
                 className="mytext"
                 type="text"
                 onChange={this.onStartChange}
+                placeholder="Enter latitude, longitude..."
               />
             </label>
           </div>
           
-          <br></br>
           <br></br>
 
           <div className="endpoint">
@@ -71,20 +77,20 @@ class MyForm extends Component {
                 className="mytext"
                 type="text"
                 onChange={this.onDestChange}
+                placeholder="Enter latitude, longitude..."
               />
             </label>
           </div>
 
-          <br></br>
-          <br></br>
+          <h2>Route Options:</h2>
 
           <div className="radio">
             <label>
               <input
                 type="radio"
                 value="min"
-                checked={this.state.selectedOption === "min"}
-                onChange={this.onRadioChange}
+                checked={this.state.routeType === "min"}
+                onChange={this.onRouteRadioChange}
               />
               Minmize Elevation
             </label>
@@ -94,8 +100,8 @@ class MyForm extends Component {
               <input
                 type="radio"
                 value="max"
-                checked={this.state.selectedOption === "max"}
-                onChange={this.onRadioChange}
+                checked={this.state.routeType === "max"}
+                onChange={this.onRouteRadioChange}
               />
               Maximize Elevation
             </label>
@@ -105,10 +111,33 @@ class MyForm extends Component {
               <input
                 type="radio"
                 value="fast"
-                checked={this.state.selectedOption === "fast"}
-                onChange={this.onRadioChange}
+                checked={this.state.routeType === "fast"}
+                onChange={this.onRouteRadioChange}
               />
               Fastest Route
+            </label>
+          </div>
+          <h2>Algorithm of choice:</h2>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                value="astar"
+                checked={this.state.algorithm === "astar"}
+                onChange={this.onAlgorithmRadioChange}
+              />
+              A* Search (recommended)
+            </label>
+          </div>
+          <div className="radio">
+            <label>
+              <input
+                type="radio"
+                value="djikstra"
+                checked={this.state.algorithm === "djikstra"}
+                onChange={this.onAlgorithmRadioChange}
+              />
+              Djikstra's (experimental!)
             </label>
           </div>
           <br />

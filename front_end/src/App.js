@@ -54,20 +54,51 @@ class App extends Component {
 
   formSubmit(event, state) {
     event.preventDefault();
-    alert("Start: " + state.startPoint + "\nDest: " + state.destPoint + "\nMethod: " + state.selectedOption);
-    this.setState({
-      src: {
-        lat: parseFloat(state.startPoint[0]),
-        lng: parseFloat(state.startPoint[1]),
-      },
-      dest: {
-        lat: parseFloat(state.destPoint[0]),
-        lng: parseFloat(state.destPoint[1]),
-      }
-    });
+    //alert("Start: " + state.startPoint + "\nDest: " + state.destPoint + "\nMethod: " + state.routeType + "\nAlgorithm: " + state.algorithm);
+    if(!state.startPoint || !state.destPoint){
+      alert('Please enter a start and end destination');
+      return;
+    }
+    if (!state.routeType){
+      alert('Please choose your route type');
+      return;
+    }
+    if(!state.algorithm){
+      alert('Please choose an algorithm');
+      return;
+    }
+    
+    try{
+      const slat = parseFloat(state.startPoint[0]);
+      const slon = parseFloat(state.startPoint[1]);
+      const dlat = parseFloat(state.destPoint[0]);
+      const dlon = parseFloat(state.destPoint[1]);
 
-    //TODO: POST request to back end
-    //TODO: populate nodes
+      //TODO change this to only allow coords within Amherst area?
+      if(!slat || !slon || !dlat || !dlon || 
+        slat < -90 || slat > 90 || slon < -90 || slon > 90 || 
+        dlat < -90 || dlat > 90 || dlon < -90 || dlon > 90){
+          throw new Error('Invalid coords');
+      }
+      
+      this.setState({
+        src: {
+          lat: slat,
+          lng: slon,
+        },
+        dest: {
+          lat: dlat,
+          lng: dlon,
+        }
+      });
+  
+      //TODO: POST request to back end
+      //TODO: populate nodes
+      
+    } catch{
+      alert('Latitude and longitude must be a comma separated list of coordinates');
+      return;
+    }
   }
 
   render(){
