@@ -29,8 +29,7 @@ class App extends Component {
       },
       zoom: 13
     };
-    //TODO populate this
-    this.nodes = [];
+    this.nodes = [this.state.src, this.state.dest];
     this.formSubmit = this.formSubmit.bind(this);
   }
 
@@ -92,11 +91,25 @@ class App extends Component {
         }
       });
   
-      //TODO: POST request to back end
+      const r1 = await fetch('/get_nearest_node/$1/$2', [this.state.src.lat, this.state.src.lon]);
+      const startNode = await r1.text();
+      console.log(startNode);
+      const r2 = await fetch('/get_nearest_node/$1/$2', [this.state.dest.lat, this.state.dest.lon]);
+      const destNode = await r2.text();
+      console.log(destNode);
+
+      if( state.routeType === 'fast' ){
+        const r = await fetch('/shortest_path_normal/$1/$2', [ startNode['node'], destNode['node'] ]);
+        const data = r.text();
+        console.log(data);
+      }
+
+      //TODO: update fetch paths to min or max elevation
       //TODO: populate nodes
       
-    } catch{
+    } catch(err){
       alert('Latitude and longitude must be a comma separated list of coordinates');
+      console.log(err);
       return;
     }
   }
@@ -123,9 +136,7 @@ class App extends Component {
           </Popup>
         </Marker>
         <Polyline color={'red'}
-          positions={[
-            this.state.src, this.state.dest,
-          ]} />
+          positions={this.nodes} />
         <Control position="topright" >
           <MyForm 
             formSubmit={this.formSubmit} />
