@@ -56,8 +56,6 @@ class MyForm extends Component {
       <div className='myForm'>
         <div className="header">EleNA</div> 
         <form onSubmit={this.formSubmit}>
-          <br></br>
-          <br></br>
 
           <div className="endpoint">
             Start:
@@ -66,11 +64,11 @@ class MyForm extends Component {
                 className="mytext"
                 type="text"
                 onChange={this.onStartChange}
+                placeholder="Enter latitude, longitude..."
               />
             </label>
           </div>
           
-          <br></br>
           <br></br>
 
           <div className="endpoint">
@@ -80,11 +78,11 @@ class MyForm extends Component {
                 className="mytext"
                 type="text"
                 onChange={this.onDestChange}
+                placeholder="Enter latitude, longitude..."
               />
             </label>
           </div>
 
-          <br></br>
           <h2>Route Options:</h2>
 
           <div className="radio">
@@ -120,7 +118,6 @@ class MyForm extends Component {
               Fastest Route
             </label>
           </div>
-          <br></br>
           <h2>Algorithm of choice:</h2>
           <div className="radio">
             <label>
@@ -143,7 +140,7 @@ class MyForm extends Component {
               />
               Djikstra's (experimental!)
             </label>
-            </div>
+          </div>
           <br />
           <button className="btn" type="submit">
             Calculate Route
