@@ -22,16 +22,21 @@ if __name__ == "__main__":
 
     #returns the shortest path overall...
 
-    shortest_path_normal = ox.shortest_path(G, origin, end, weight = 'length') #shortest path from origin to end
+    # shortest_path_normal = ox.shortest_path(G, origin, end, weight = 'length') #shortest path from origin to end
+    shortest_path_normal = shortestPath.shortest_path_normal(G, origin, end)['nodes']
+    shortest_path_dijkstra = shortestPath.shortest_path_normal(G,origin, end, dijkstra=True)['nodes']
+
     print(shortest_path_normal)
     fig, ax = ox.plot_graph_route(G, shortest_path_normal, bbox=None, node_size=10)
 
-    list_of_coords = s.convert_nodes_to_coord(G, shortest_path_normal) #passing in a list of ints representing nodes, return a list of (x,y) coords
-    print(list_of_coords)
-    #returns shortest path
+    # list_of_coords = s.convert_nodes_to_coord(G, shortest_path_normal) #passing in a list of ints representing nodes, return a list of (x,y) coords
+    # print(list_of_coords)
+    # #returns shortest path
 
-    shortest_path_grad = ox.shortest_path(G, origin, end, weight='impedance')
-    print(shortest_path_grad)
+    # shortest_path_grad = ox.shortest_path(G, origin, end, weight='impedance')
+    shortest_path_grad = shortestPath.shortest_path_elevate(G, origin, end)['nodes']
+    print(shortestPath.shortest_path_elevate(G, origin, end)['coordinates'])
+
     fig, ax = ox.plot_graph_route(G, shortest_path_grad, bbox=None, node_size=0)
 
     #print some summary stats...
