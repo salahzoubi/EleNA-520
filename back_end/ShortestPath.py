@@ -18,7 +18,7 @@ class ShortestPath:
         return (length *penalty_term)**2
 
     def convert_nodes_to_coord(self, G, nodes):
-        return [(G.nodes[n]['x'], G.nodes[n]['y']) for n in nodes]
+        return [(G.nodes[n]['y'], G.nodes[n]['x']) for n in nodes]
     #strategy input for shortest path (pick between default (A*) and dijkstra)
     def shortest_path_normal(self, G, start, end, dijkstra = False):
         if not dijkstra:
@@ -31,7 +31,7 @@ class ShortestPath:
             return {"nodes": short_path, "coordinates": coord_path}
 
     def nearest_node_to_point(self, G, x, y):
-        return ox.get_nearest_node(G, (x, y))
+        return ox.get_nearest_node(G, (y, x))
 
     def shortest_path_elevate(self, G, start, end, dijkstra =  False):
         if not dijkstra:
