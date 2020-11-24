@@ -44,12 +44,12 @@ def create_graph_point(x_loc, y_loc, dist, transport_mode):
 @app.route('/shortest_path_normal/<int:start>/<int:end>')
 def get_shortest_path_normal(start, end):
     shortest_path = shortestPathObject.shortest_path_normal(graph,start, end)
-    return {"shortest" : shortest_path}
+    return shortest_path
 
 @app.route('/shortest_path_elevate/<int:start>/<int:end>')
 def get_shortest_path_elevate(start, end):
-    shortest_path = shortestPathObject.shortest_path_elevate(graph,start, end)
-    return {"shortest" : shortest_path}
+    shortest_path = shortestPathObject.shortest_path_elevate(graph, start, end)
+    return shortest_path
 
 @app.route('/coordinates/<float:x_loc>/<float:y_loc>')
 def temp(x_loc, y_loc):
@@ -57,7 +57,7 @@ def temp(x_loc, y_loc):
 
 @app.route('/get_nearest_node/<float:x_loc>/<float:y_loc>')
 def get_nearest_node(x_loc, y_loc):
-    return ox.get_nearest_node(graph, x_loc, y_loc)
+    return {"node" : shortestPathObject.get_nearest_node(graph, x_loc, y_loc)}
 
 
 #def shortest_path_normal(self, G, start, end):
