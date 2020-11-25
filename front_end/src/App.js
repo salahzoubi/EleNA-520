@@ -27,9 +27,9 @@ class App extends Component {
         lat: 42.3819,
         lng: -72.5300,
       },
-      zoom: 13
+      zoom: 15,
+      nodes: [[42.3898, -72.5283], [42.3819,-72.5300]]
     };
-    this.nodes = [this.state.src, this.state.dest];
     this.formSubmit = this.formSubmit.bind(this);
   }
 
@@ -79,7 +79,36 @@ class App extends Component {
         dlat < -90 || dlat > 90 || dlon < -90 || dlon > 90){
           throw new Error('Invalid coords');
       }
-      
+  
+      const r1 = await fetch('/coordinates/$1/$2', [this.state.src.lat, this.state.src.lon]);
+      const startNode = await r1.text();
+      console.log("Received from backend:\n" + startNode);
+      const r2 = await fetch('/coordinates/$1/$2', [this.state.dest.lat, this.state.dest.lon]);
+      const destNode = await r2.text();
+      console.log("Received from backend:\n" + destNode);
+
+      let n = [];
+      if( state.routeType === 'fast' ){
+        const r = await fetch('/shortest_path_normal/$1/$2', [ startNode['node'], destNode['node'] ]);
+        const data = r.text();
+        console.log("Received from backend:\n" + data);
+      }
+      else if( state.routeType === 'min' ){
+        const r = await fetch('/shortest_path_elevate/$1/$2', [ startNode['node'], destNode['node'] ]);
+        const data = r.text();
+        console.log("Received from backend:\n" + data);
+      }
+      else if( state.routeType === 'max' ){
+        alert("Routing by maximal elevation is currently in development, sorry!");
+        n = [ [slat, slon], [dlat, dlon] ];
+        // const r = await fetch('/shortest_path_elevate/$1/$2', [ startNode['node'], destNode['node'] ]);
+        // const data = r.text();
+        // console.log(data);
+      }
+      else{
+        console.log("Error!");
+      }
+
       this.setState({
         src: {
           lat: slat,
@@ -88,24 +117,9 @@ class App extends Component {
         dest: {
           lat: dlat,
           lng: dlon,
-        }
+        },
+        nodes: n
       });
-  
-      const r1 = await fetch('/get_nearest_node/$1/$2', [this.state.src.lat, this.state.src.lon]);
-      const startNode = await r1.text();
-      console.log(startNode);
-      const r2 = await fetch('/get_nearest_node/$1/$2', [this.state.dest.lat, this.state.dest.lon]);
-      const destNode = await r2.text();
-      console.log(destNode);
-
-      if( state.routeType === 'fast' ){
-        const r = await fetch('/shortest_path_normal/$1/$2', [ startNode['node'], destNode['node'] ]);
-        const data = r.text();
-        console.log(data);
-      }
-
-      //TODO: update fetch paths to min or max elevation
-      //TODO: populate nodes
       
     } catch(err){
       alert('Latitude and longitude must be a comma separated list of coordinates');
@@ -115,10 +129,8 @@ class App extends Component {
   }
 
   render(){
-    console.log(JSON.stringify(this.state));
     const positionDestIcon = [this.state.dest.lat, this.state.dest.lng];
     const positionSrcIcon = [this.state.src.lat, this.state.src.lng];
-    //TODO add polyLines of nodes
     return (
       <Map className="map" center={positionSrcIcon} zoom={this.state.zoom}>
         <TileLayer
@@ -136,7 +148,7 @@ class App extends Component {
           </Popup>
         </Marker>
         <Polyline color={'red'}
-          positions={this.nodes} />
+          positions={this.state.nodes} />
         <Control position="topright" >
           <MyForm 
             formSubmit={this.formSubmit} />
