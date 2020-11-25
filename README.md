@@ -10,7 +10,7 @@ Sal Alzu’bi, Niraj Kumar Singh, Khang Bui, Victoria Caruso, Jason Bolton, Dani
 
 In this project, we use MVC architecture to develop the app with Flask as backend server and React as frontend server. The steps to start the backend and frontend servers are described in the README files within `back_end` directory and `front_end` directory.
 
-### [!Video Demonstration] (https://drive.google.com/file/d/15eAWh4uBgGCN_seP7vYYx7NR4oE8Z4BZ/view?usp=sharing)
+### [Video Demonstration] (https://drive.google.com/file/d/15eAWh4uBgGCN_seP7vYYx7NR4oE8Z4BZ/view?usp=sharing)
 
 ## Using the app
 
