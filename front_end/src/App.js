@@ -80,10 +80,10 @@ class App extends Component {
       }
   
       const r1 = await fetch('/coordinates/$1/$2', [this.state.src.lat, this.state.src.lon]);
-      const startNode = await r1.text();
+      const startNode = await r1.json();
       console.log("Received from backend:\n" + startNode);
       const r2 = await fetch('/coordinates/$1/$2', [this.state.dest.lat, this.state.dest.lon]);
-      const destNode = await r2.text();
+      const destNode = await r2.json();
       console.log("Received from backend:\n" + destNode);
 
       let n = [];
