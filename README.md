@@ -16,7 +16,7 @@ After starting up the flask and react server, open up the browser and navigate t
 
 User will be welcomed with a screen of the UMASS Amherst Campus map and a box to enter coordinates. User will input two coordinates and a strategy (`source` and `destination`, (A*, Dijsktra) to the provided box and click `Submit`, the map will display two points on the map indicating the coordinates user has submitted, and the shortest path that connects two points.
 
-![alt text](https://drive.google.com/file/d/1dtFRWLX4puv-kjdazg8nA0VbjZeH_3L2/view?usp=sharing)
+![alt text](/UML Diagram.png)
 
 
 
