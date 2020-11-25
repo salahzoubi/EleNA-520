@@ -33,7 +33,7 @@ class StatsSummary:
     def modify_graph_elevate(self, G):
         c = ShortestPath()
         for u,v,k, data in G.edges(keys= True, data = True):
-            data['impedance'] = c.cost_function(data['length'], data['grade'])
+            data['impedance'] = -1 * c.cost_function(data['length'], data['grade'])
             data['rise'] = data['length'] * data['grade']
         return G
 

@@ -17,8 +17,9 @@ if __name__ == "__main__":
     G = s.populate_graph(G) #add all the necessary gradients to the graph we have
     G = s.modify_graph_elevate(G)
 
-    origin = ox.get_nearest_node(G, (42.3878210, -72.5239110)) #Frank DC coordinates from the graph G
-    end = ox.get_nearest_node(G, (2.3894329, -72.5190326)) #Chadbourne Hall coordinate from G
+
+    origin = ox.get_nearest_node(G, (42.3819,-72.5300)) #Frank DC coordinates from the graph G
+    end = ox.get_nearest_node(G, (42.3898, -72.5283)) #Chadbourne Hall coordinate from G
 
     #returns the shortest path overall...
 
@@ -26,7 +27,7 @@ if __name__ == "__main__":
     shortest_path_normal = shortestPath.shortest_path_normal(G, origin, end)['nodes']
     shortest_path_dijkstra = shortestPath.shortest_path_normal(G,origin, end, dijkstra=True)['nodes']
 
-    print(shortest_path_normal)
+    print(shortestPath.shortest_path_normal(G, origin, end)['coordinates'])
     fig, ax = ox.plot_graph_route(G, shortest_path_normal, bbox=None, node_size=10)
 
     # list_of_coords = s.convert_nodes_to_coord(G, shortest_path_normal) #passing in a list of ints representing nodes, return a list of (x,y) coords
@@ -38,6 +39,7 @@ if __name__ == "__main__":
     print(shortestPath.shortest_path_elevate(G, origin, end)['coordinates'])
 
     fig, ax = ox.plot_graph_route(G, shortest_path_grad, bbox=None, node_size=0)
+
 
     #print some summary stats...
 

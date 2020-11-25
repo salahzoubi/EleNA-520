@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect,Component} from 'react';
 import './App.css';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
@@ -32,6 +32,7 @@ class App extends Component {
     this.nodes = [this.state.src, this.state.dest];
     this.formSubmit = this.formSubmit.bind(this);
   }
+
 
   srcIcon = L.icon({
     iconUrl: start,
@@ -91,13 +92,15 @@ class App extends Component {
         }
       });
   
-      const r1 = await fetch('/get_nearest_node/$1/$2', [this.state.src.lat, this.state.src.lon]);
+      const r1 = await fetch('http://localhost:5000/coordinates/' + this.state.src.lat + '/' +this.state.src.lon );
       const startNode = await r1.text();
       console.log(startNode);
-      const r2 = await fetch('/get_nearest_node/$1/$2', [this.state.dest.lat, this.state.dest.lon]);
+      const r2 = await fetch('http://localhost:5000/coordinates/$1/$2', [this.state.dest.lat, this.state.dest.lon]);
       const destNode = await r2.text();
       console.log(destNode);
 
+
+//
       if( state.routeType === 'fast' ){
         const r = await fetch('/shortest_path_normal/$1/$2', [ startNode['node'], destNode['node'] ]);
         const data = r.text();
