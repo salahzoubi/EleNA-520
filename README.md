@@ -15,3 +15,7 @@ In this project, we use MVC architecture to develop the app with Flask as backen
 After starting up the flask and react server, open up the browser and navigate to `http://localhost: 3000` (or whichever port the react server is running at). 
 
 User will be welcomed with a screen of the UMASS Amherst Campus map and a box to enter coordinates. User will input two coordinates and a strategy (`source` and `destination`, (A*, Dijsktra) to the provided box and click `Submit`, the map will display two points on the map indicating the coordinates user has submitted, and the shortest path that connects two points.
+
+
+![alt text](UML Diagram.png)
+
