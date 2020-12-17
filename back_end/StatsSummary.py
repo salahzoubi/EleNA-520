@@ -2,7 +2,7 @@ import osmnx as ox
 import numpy as np
 from ShortestPath import ShortestPath
 
-api_key = "AIzaSyA0HL2QKAmdhCiBPnRj_YqIZykzfm0HRUE"
+api_key = "Insert your API Key"
 
 #create a networkx digraph based on the location provided, default transport mode is "walking"
 #Transport modes: ‘walk’, ‘bike’, ‘drive’, ‘drive_service’, ‘all’, ‘all_private’, ‘none'
